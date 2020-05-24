@@ -1,7 +1,9 @@
+import 'package:defaultwebflutter/screens/root.dart';
+
 import 'strings.dart';
 import 'themes/light_theme.dart';
 import 'package:flutter/material.dart';
-import 'screens/login/login.dart';
+import 'screens/login/login_page.dart';
 
 void main() {
   runApp(
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: APP_NAME,
       debugShowCheckedModeBanner: true,
       theme: lightTheme(),
-      home: Login(),
+      home: Root(),
     );
   }
 }

@@ -1,16 +1,14 @@
 import 'dart:io';
-//import '../../utils/log_util.dart';
+import '../../contract/crud.dart';
 import 'package:path/path.dart' as Path;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../contract/user/user_contract.dart';
 import '../../models/base_user.dart';
 import '../../models/singleton/singleton_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
 
 import 'base_firebase_service.dart';
 
-class FirebaseUserService implements UserContractService {
+class FirebaseUserService implements Crud<BaseUser> {
   CollectionReference _collection;
   BaseFirebaseService _firebaseCrud;
 
@@ -32,7 +30,7 @@ class FirebaseUserService implements UserContractService {
     return _firebaseCrud.read(item).then((response) {
       return BaseUser.fromMap(response);
     }).catchError((error) {
-      //Log.e("Document ${item.id} not found");
+      return null;
     });
   }
 
@@ -41,7 +39,7 @@ class FirebaseUserService implements UserContractService {
     return _firebaseCrud.update(item).then((response) {
       return BaseUser.fromMap(response);
     }).catchError((error) {
-      //Log.e("Document ${item.id} not found");
+      return null;
     });
   }
 
@@ -50,7 +48,7 @@ class FirebaseUserService implements UserContractService {
     return _firebaseCrud.delete(item).then((response) {
       return BaseUser.fromMap(response);
     }).catchError((error) {
-      //Log.e("Document ${item.id} not found");
+      return null;
     });
   }
 
@@ -124,7 +122,9 @@ class FirebaseUserService implements UserContractService {
 
   @override
   Future<BaseUser> currentUser() async {
+    await Future.delayed(Duration(seconds: 2));//Flutter web precisa aguardar
     FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+    print(currentUser);
     if (currentUser == null) {
       return null;
     } else {

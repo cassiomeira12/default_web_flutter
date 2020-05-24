@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
-const brightness = Brightness.light;
+const brightness = Brightness.dark;
 
 const primaryColor = Color(0xFF4FAA84);
 const primaryColorLight = Color(0xFF4FAA84);
 const primaryColorDark = Color(0xFF3C7168);
 const accentColor = Color(0xFFFCA639);
 
-const backgroundColor = Color(0xFFF9F9FA);
+const backgroundColor = Color(0xFFF7F7F8);
 const errorColor = Color(0xFFB00020);
 
 ThemeData lightTheme() {
   return ThemeData(
     scaffoldBackgroundColor: backgroundColor,
-    backgroundColor: Colors.white,
+    //backgroundColor: Colors.green,
     brightness: brightness,
+    canvasColor: Colors.black87,
     textTheme: TextTheme(
       subtitle: TextStyle(
         fontSize: 28,
